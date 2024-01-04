@@ -2,7 +2,7 @@
 
     namespace DesignPatterns\Comportamentais\Strategy\Strategies;
 
-    abstract class Pedido
+    abstract class AbstractPedido
     {
        private float $valor;
        private Frete $tipoFrete;
