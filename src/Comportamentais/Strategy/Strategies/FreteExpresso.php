@@ -1,6 +1,6 @@
 <?php
 
-    namespace DesignPatterns\Comportamentais\Strategy;
+    namespace DesignPatterns\Comportamentais\Strategy\Strategies;
 
     class FreteExpresso implements Frete
     {
