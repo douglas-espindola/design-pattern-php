@@ -18,7 +18,7 @@ $produto3 = new Produto('Calça Jeans', 'Calça Jeans Masculina', 119.90);
 
 // ==== Até aqui apenas criamos os objetos básicos que uma venda precisa. ====
 // ==== Agora vamos ao processo de venda propriamente dito. ====
-//Criação do Pedido.
+//Criação do AbstractPedido.
 $pedido = new Pedido($consumidor);
 
 //Adição dos produtos ao pedido.
