@@ -1,0 +1,20 @@
+{
+  "name": "vivan/design-patterns-php",
+  "description": "Sample code for several design patterns in PHP",
+  "authors": [
+    {
+      "name": "Vinicius Vivan"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "ext-json": "*",
+    "ext-pdo": "*",
+    "ext-mysql_xdevapi": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "DesignPatterns\\": "src/"
+    }
+  }
+}

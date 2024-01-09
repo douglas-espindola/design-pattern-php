@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+ # Servidor HTTP e Load Balance
+ web:
+  image: nginx:1.16
+  container_name: Nginx
+  ports:
+   - "80:80"
+   - "443:443"
+  volumes:
+   # Aplicacoes
+   - ./:/var/www
+   # Logs
+   - ./.docker/nginx/logs:/var/log/nginx/
+   # Nginx config / Proxy reverso
+   - ./.docker/site.conf:/etc/nginx/nginx.conf
+  networks:
+   - app
+
+ #PHP 7.4
+ php:
+  build:
+   context: .docker/php7
+  container_name: PHP
+  ports:
+   - "9000:9000"
+  volumes:
+   - ./:/var/www
+  working_dir: /var/www
+  networks:
+   - app
+
+networks:
+ app:
+  driver: bridge

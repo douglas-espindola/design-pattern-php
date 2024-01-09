@@ -1,0 +1,57 @@
+body {
+    background-color: grey;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+article {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 400px;
+}
+
+h1 {
+    font-family: Arial;
+}
+
+div {
+    text-align: left;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial;
+}
+
+td {
+    border: 1px solid grey;
+    padding: 3px;
+    text-align: center;
+}
+
+.padrao {
+    text-align: left;
+}
+
+.tipo {
+    background-color: #cccccc;
+    font-weight: bold;
+    text-align: center;
+}
