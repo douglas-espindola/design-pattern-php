@@ -1,0 +1,4 @@
+.idea
+.docker/sessions/*
+.docker/nginx/logs/*
+vendor
