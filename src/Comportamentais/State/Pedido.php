@@ -4,44 +4,66 @@
 
     class Pedido
     {
-        const AGUARDANDO_PAGAMENTO = 1;
-        const PAGO      = 2;
-        const CANCELADO = 3;
-        const ENVIADO   = 4;
-
-        private int $estado_atual;
-
+        private State $aguardandoPagamento;
+        private State $pago;
+        private State $cancelado;
+        private State $enviado;
+        private State $estado_atual;
         public function __construct()
         {
-            $this->estado_atual = self::AGUARDANDO_PAGAMENTO;
+            $this->aguardandoPagamento = new AguardandoPagamentoState($this);
+            $this->pago = new PagoState($this);
+            $this->cancelado = new CanceladoState($this);
+            $this->enviado = new EnviadoState($this);
+
+            $this->estado_atual = $this->aguardandoPagamento;
         }
 
-        public function sucessoAoPagar() {
-            if($this->estado_atual == self::AGUARDANDO_PAGAMENTO){
-                $this->estado_atual = self::PAGO;
-            } else {
-                throw new \Exception("Não é possível mudar o estado");
+        public function getPago(): State
+        {
+            return $this->pago;
+        }
+
+        public function getCancelado(): State
+        {
+            return $this->cancelado;
+        }
+
+        public function getEnviado(): State
+        {
+            return $this->enviado;
+        }
+
+        public function realizarPagamento()
+        {
+            try {
+                $this->estado_atual->sucessoAoPagar();
+            } catch (\Exception $e) {
+                echo $e->getMessage();
             }
         }
 
         public function cancelarPedido()
         {
-            if($this->estado_atual == self::AGUARDANDO_PAGAMENTO){
-                $this->estado_atual = self::CANCELADO;
-            }elseif($this->estado_atual == self::PAGO){
-                $this->estado_atual = self::CANCELADO;
-            }
-            else {
-                throw new \Exception("O pedido não pode ser CANCELADO");
+            try {
+                $this->estado_atual->cancelar();
+            } catch (\Exception $e) {
+                echo $e->getMessage();
             }
         }
 
         public function despacharPedido()
         {
-            if($this->estado_atual == self::PAGO){
-                $this->estado_atual = self::ENVIADO;
-            } else {
-                throw new \Exception("O pedido não pode ser ENVIADO");
+            try {
+                $this->estado_atual->enviar();
+            } catch (\Exception $e) {
+                echo $e->getMessage();
             }
+
+        }
+
+        public function setEstadoAtual(State $estado)
+        {
+            $this->estado_atual = $estado;
         }
     }

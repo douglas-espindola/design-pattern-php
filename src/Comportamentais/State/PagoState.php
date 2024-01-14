@@ -1,7 +1,6 @@
 <?php
 
     namespace DesignPatterns\Comportamentais\State;
-    use State;
 
     class PagoState implements State
     {
